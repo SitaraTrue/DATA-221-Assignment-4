@@ -27,3 +27,13 @@ train_accuracy = accuracy_score(labels_train, predicted_labels_train)
 
 print(f"Test accuracy: {test_accuracy}")
 print(f"Training accuracy: {train_accuracy}")
+
+# Report on top five most important features
+print(decision_tree_classifier.feature_importances_)
+# Top 5 most important features are features #8, 23, 22, 21, 28
+
+''' Model complexity
+- Limiting the maximum depth and setting a minimum impurity decrease increases the model's accuracy on the test data.
+    It prevents the model from creating decision nodes until it's perfectly fit to the training data.
+- Knowing feature importance helps us understand which features contribute to the final classification and which do not.
+'''
