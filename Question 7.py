@@ -3,6 +3,10 @@
 # Load dataset
 from tensorflow.keras.datasets import fashion_mnist
 from tensorflow.keras import layers,models
+import tensorflow as tf
+from sklearn import metrics
+import matplotlib.pyplot as plt
+
 (X_train, y_train), (X_test, y_test) = fashion_mnist.load_data()
 
 # Normalize the dataset
@@ -34,6 +38,31 @@ cnn_model.compile(
     metrics=["accuracy"])
 cnn_model.fit(X_train, y_train, epochs=15, batch_size=64)
 
-# Evaluate
-test_loss, test_acc = cnn_model.evaluate(X_test, y_test, verbose=0)
-print(f"Test loss: {test_loss}, test accuracy: {test_acc}")
+# Predictions and Confusion Matrix
+predicted_probs = cnn_model.predict(X_test, verbose=0)
+predicted_labels = []
+for prob in predicted_probs:
+    label = int(tf.argmax(prob))
+    predicted_labels.append(label)
+confusion_matrix = metrics.confusion_matrix(y_test, predicted_labels)
+print(confusion_matrix)
+
+# Find 3 misclassified images
+counter = 0
+for i in range(0,len(predicted_labels)):
+    if predicted_labels[i] != y_test[i]:
+        plt.figure(figsize=[8,8])
+        plt.imshow(X_test[i,:,:], cmap='gray')
+        plt.show()
+        print(f"Predicted: {predicted_labels[i]}, Actual: {y_test[i]})")
+        counter += 1
+    if counter == 3:
+        break
+
+''' Misclassification
+- The pattern in the misclassifications is that the prediction was the next closest thing.
+    Predicted sandal, actually sneaker (both shoes)
+    Predicted pullover, actually coat (both tops/outer layers)
+    Predicted t-shirt, was actually shirt (both shirts)
+- This could be improved by having more data, which would help the model learn the differences between similar categories.
+'''
