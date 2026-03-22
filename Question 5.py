@@ -62,5 +62,8 @@ decision_confusion_matrix = metrics.confusion_matrix(labels_test, decision_predi
 print(f"Decision tree confusion matrix: \n{decision_confusion_matrix}")
 
 ''' Comparison
-- I would prefer the neu
+- I would prefer the neural network over the decision tree.
+    The neural network has more false negatives, and missing a breast cancer diagnosis can be fatal.
+- The advantage of the neural network is that it minimizes loss, but a limitation is that it has several false positives.
+    The advantage of the decision tree is  that it has more success in finding true negatives, but the false negatives are a limitation.
 '''
