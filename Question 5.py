@@ -8,7 +8,8 @@ from sklearn.tree import DecisionTreeClassifier
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, InputLayer
 from sklearn import metrics
-import matplotlib as plt
+import matplotlib.pyplot as plt
+import numpy as np
 
 data = load_breast_cancer()
 tf.random.set_seed(1)
@@ -45,12 +46,20 @@ neural_network_model.fit(x_std, target_y, epochs=10)
 # Predict
 neural_predicted = neural_network_model.predict(features_test)
 
-# Make the confusion matrix
+''' Neural network confusion matrix '''
+neural_predicted = np.round(neural_predicted).tolist()
 nn_confusion_matrix = metrics.confusion_matrix(labels_test, neural_predicted)
-nn_cm = metrics.ConfusionMatrixDisplay(confusion_matrix=nn_confusion_matrix, display_labels=[0,1])
-nn_cm.plot()
-plt.show()
+print(f"Neural network confusion matrix: \n{nn_confusion_matrix}")
 
 # Create decision tree model
 decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=8, min_impurity_decrease=0.01)
 decision_tree_classifier.fit(features_train, labels_train)
+
+# Predict
+decision_predicted = decision_tree_classifier.predict(features_test)
+
+''' Decision tree confusion matrix '''
+decision_confusion_matrix = metrics.confusion_matrix(labels_test, decision_predicted)
+print(f"Decision tree confusion matrix: \n{decision_confusion_matrix}")
+
+
