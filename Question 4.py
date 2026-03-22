@@ -4,9 +4,10 @@
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
+from sklearn.tree import DecisionTreeClassifier
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, InputLayer
-from sklearn.metrics import accuracy_score
+
 data = load_breast_cancer()
 tf.random.set_seed(1)
 
@@ -36,6 +37,10 @@ neural_network_model.compile(loss='binary_crossentropy', metrics=['accuracy'])
 
 # Fit
 neural_network_model.fit(x_std, target_y, epochs=10)
+
+# Create decision tree model
+decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=8, min_impurity_decrease=0.01)
+decision_tree_classifier.fit(features_train, labels_train)
 
 # Evaluate
 test_accuracy = neural_network_model.evaluate(features_test, labels_test)
