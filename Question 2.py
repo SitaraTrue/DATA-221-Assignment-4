@@ -30,5 +30,6 @@ print(f"Training accuracy: {train_accuracy}")
 
 ''' Entropy
 - Entropy measures the goodness of a partition (lower=better)
-- The observed results show high accuracy on testing data, so it shows good generalization
+- The observed results show high accuracy on testing data, so it shows good generalization.
+    Since the training has an accuracy of 1.0, it may be overfitted.
 '''
