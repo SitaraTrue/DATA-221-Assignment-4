@@ -27,3 +27,8 @@ train_accuracy = accuracy_score(labels_train, predicted_labels_train)
 
 print(f"Test accuracy: {test_accuracy}")
 print(f"Training accuracy: {train_accuracy}")
+
+''' Entropy
+- Entropy measures the goodness of a partition (lower=better)
+- The observed results show high accuracy on testing data, so it shows good generalization
+'''
