@@ -15,7 +15,7 @@ target_y = data.target
 features_train, features_test, labels_train, labels_test = train_test_split(features_x, target_y, test_size=.2, random_state=19)
 
 # Create decision tree model
-decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=8, min_impurity_decrease=0.01)
+decision_tree_classifier = DecisionTreeClassifier(criterion='entropy', max_depth=8, min_impurity_decrease=0.01, random_state=19)
 decision_tree_classifier.fit(features_train, labels_train)
 
 # Predict
