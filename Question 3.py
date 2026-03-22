@@ -30,7 +30,14 @@ print(f"Training accuracy: {train_accuracy}")
 
 # Report on top five most important features
 print(decision_tree_classifier.feature_importances_)
-# Top 5 most important features are features #8, 23, 22, 21, 28
+
+''' Top 5 most important features are features #8, 23, 22, 21, 28, which are:
+- concave_points1
+- perimeter3
+- texture3
+- radius3
+- compactness3
+'''
 
 ''' Model complexity
 - Limiting the maximum depth and setting a minimum impurity decrease increases the model's accuracy on the test data.
