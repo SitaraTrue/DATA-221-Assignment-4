@@ -42,3 +42,8 @@ test_accuracy = neural_network_model.evaluate(features_test, labels_test)
 train_accuracy = neural_network_model.evaluate(features_train, labels_train)
 print(f"Test accuracy: {test_accuracy[1]}")
 print(f"Train accuracy: {train_accuracy[1]}")
+
+''' Feature scaling
+- Feature scaling puts all of the values in a consistent range, helping the neural network learn.
+- Epochs are how many times the model repeats predicting, validating, computing loss, and updating the weights and biases to minimize loss.
+'''
